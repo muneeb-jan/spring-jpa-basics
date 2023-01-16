@@ -3,6 +3,7 @@ package com.example.demo;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,10 +22,38 @@ public class Student {
         strategy = SEQUENCE,
         generator = "student_sequence"
     ) // value for id comes from a sequence generated using sequence generator defined above. The type in DB will be big serial.
+    @Column(
+        name = "id",
+        updatable = false
+    ) // Column name in table should be id and it should not be updatable
     private Long id;
+
+    @Column(
+        name = "first_name",
+        nullable = false,
+        columnDefinition = "TEXT"
+    ) // Column name should be "first_name". It cannot be null and the type has to be text.. basically: first_name text not null
     private String firstName;
+
+    @Column(
+        name = "last_name",
+        nullable = false,
+        columnDefinition = "TEXT"
+    ) 
     private String lasName;
+
+    @Column(
+        name = "email",
+        nullable = false,
+        columnDefinition = "TEXT",
+        unique = true
+    ) // Make email unique 
     private String email;
+
+    @Column(
+        name = "age",
+        nullable = false
+    )
     private Integer age;
 
 
