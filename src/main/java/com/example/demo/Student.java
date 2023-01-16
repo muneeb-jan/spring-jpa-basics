@@ -8,8 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity(name = "Student") // We should explicitly define the name of entity as good practice
+@Table(
+    name = "student",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+    }
+) // Specify table name and the name for unique contraint that wil be generated for email in db.
 public class Student {
 
     @Id // Shows that id is primary key.. using @Id annotation. These are the fields in our relation Student in DB which will be created at startup
@@ -45,9 +53,9 @@ public class Student {
     @Column(
         name = "email",
         nullable = false,
-        columnDefinition = "TEXT",
-        unique = true
-    ) // Make email unique 
+        columnDefinition = "TEXT"
+        // unique = true
+    ) // Make email unique. We removed from here because we defined it in Table properties above. This is so as to prettify constraint name
     private String email;
 
     @Column(
