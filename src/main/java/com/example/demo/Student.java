@@ -2,7 +2,6 @@ package com.example.demo;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -65,8 +64,8 @@ public class Student {
     private Integer age;
 
 
-    public Student(Long id, String firstName, String lasName, String email, Integer age) {
-        this.id = id;
+    // We don't need to put id in constructor since it is auto-generated.
+    public Student(String firstName, String lasName, String email, Integer age) {
         this.firstName = firstName;
         this.lasName = lasName;
         this.email = email;
@@ -76,9 +75,6 @@ public class Student {
 
     public Long getId() {
         return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
